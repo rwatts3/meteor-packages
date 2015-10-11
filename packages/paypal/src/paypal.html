@@ -1,0 +1,21 @@
+<template name="paypalForm">
+	<form action="https://www.paypal.com/cgi-bin/webscr" id="{{paypal.formId}}" method="post">
+		<input type="hidden" name="cmd" value="{{paypal.type}}">
+		<input type="hidden" name="business" value="{{paypal.email}}">
+		{{#each items}}
+			<input type="hidden" name="item_name_{{@index}}" value="{{this.productName}}">
+			<input type="hidden" name="item_number_{{@index}}" value="{{this.productNumber}}">
+			<input type="hidden" name="amount_{{@index}}" value="{{this.productAmount}}">
+		{{/each}}
+		<input type="hidden" name="currency_code" value="{{paypal.currency}}">
+		<input type="hidden" name="upload" value="1">
+	</form>
+</template>
+
+<template name="paypalSubmit">
+	<a href="#!" id="paypalSubmit" class="{{paypal.submitClass}}">{{paypal.submitText}}</a>
+</template>
+
+<template name="paypalCancel">
+	<a href="#!" id="paypalCancel" class="{{paypal.cancelClass}}">{{paypal.cancelText}}</a>
+</template>
